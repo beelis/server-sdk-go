@@ -485,6 +485,8 @@ func (s *LocalTrack) WriteSample(sample media.Sample, opts *SampleWriteOptions) 
 	for _, p := range packets {
 		if err := s.WriteRTP(p, opts); err != nil {
 			writeErrs = append(writeErrs, err)
+		} else {
+			s.log.Infow("TRACE wrote RTP packet", "sequenceNumber", p.SequenceNumber, "timestamp", p.Timestamp)
 		}
 	}
 
@@ -628,6 +630,7 @@ func (s *LocalTrack) writeWorker(provider SampleProvider, onComplete func()) {
 		// account for clock drift
 		nextSampleTime = nextSampleTime.Add(sample.Duration)
 		sleepDuration := time.Until(nextSampleTime)
+		s.log.Infow("TRACE sleeping", "duration", sleepDuration) // REMOVE
 		if sleepDuration <= 0 {
 			continue
 		}

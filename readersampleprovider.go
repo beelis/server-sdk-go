@@ -236,6 +236,7 @@ func (p *ReaderSampleProvider) NextSample(ctx context.Context) (media.Sample, er
 	sample := media.Sample{}
 	switch p.Mime {
 	case webrtc.MimeTypeH264:
+		logger.Infow("TRACE starting h264 sample read start")
 		nal, err := p.h264reader.NextNAL()
 		if err != nil {
 			return sample, err
@@ -254,6 +255,7 @@ func (p *ReaderSampleProvider) NextSample(ctx context.Context) (media.Sample, er
 		sample.Data = nal.Data
 		if !isFrame {
 			// return it without duration
+			logger.Infow("TRACE returning h264 sample non-frame")
 			return sample, nil
 		}
 		sample.Duration = defaultH264FrameDuration
@@ -321,6 +323,9 @@ func (p *ReaderSampleProvider) NextSample(ctx context.Context) (media.Sample, er
 
 	if p.FrameDuration > 0 {
 		sample.Duration = p.FrameDuration
+	}
+	if p.Mime == webrtc.MimeTypeH264 {
+		logger.Infow("TRACE returning h264 sample frame")
 	}
 	return sample, nil
 }
