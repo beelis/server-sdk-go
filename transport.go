@@ -29,11 +29,11 @@ import (
 	"github.com/pion/sdp/v3"
 	"github.com/pion/webrtc/v4"
 
+	sdkinterceptor "github.com/beelis/server-sdk-go/v2/pkg/interceptor"
 	lkinterceptor "github.com/livekit/mediatransportutil/pkg/interceptor"
 	"github.com/livekit/mediatransportutil/pkg/pacer"
 	protoLogger "github.com/livekit/protocol/logger"
 	lksdp "github.com/livekit/protocol/sdp"
-	sdkinterceptor "github.com/livekit/server-sdk-go/v2/pkg/interceptor"
 )
 
 const (

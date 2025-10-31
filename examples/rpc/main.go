@@ -9,8 +9,8 @@ import (
 
 	"github.com/google/uuid"
 
+	lksdk "github.com/beelis/server-sdk-go/v2"
 	"github.com/livekit/protocol/logger"
-	lksdk "github.com/livekit/server-sdk-go/v2"
 )
 
 const (

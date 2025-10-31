@@ -9,12 +9,12 @@ import (
 
 	"github.com/pion/webrtc/v4"
 
+	lksdk "github.com/beelis/server-sdk-go/v2"
+	lkmedia "github.com/beelis/server-sdk-go/v2/pkg/media"
 	"github.com/livekit/media-sdk/res"
 	"github.com/livekit/media-sdk/res/testdata"
 	"github.com/livekit/media-sdk/webm"
 	"github.com/livekit/protocol/logger"
-	lksdk "github.com/livekit/server-sdk-go/v2"
-	lkmedia "github.com/livekit/server-sdk-go/v2/pkg/media"
 )
 
 const (

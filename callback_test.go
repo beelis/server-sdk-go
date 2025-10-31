@@ -3,8 +3,8 @@ package lksdk_test
 import (
 	"fmt"
 
+	lksdk "github.com/beelis/server-sdk-go/v2"
 	"github.com/livekit/protocol/livekit"
-	lksdk "github.com/livekit/server-sdk-go/v2"
 )
 
 // ExampleRoomCallback demonstrates usage of RoomCallback to handle various room events

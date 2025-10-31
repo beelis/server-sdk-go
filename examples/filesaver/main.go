@@ -30,9 +30,9 @@ import (
 	"github.com/pion/webrtc/v4/pkg/media/ivfwriter"
 	"github.com/pion/webrtc/v4/pkg/media/oggwriter"
 
+	lksdk "github.com/beelis/server-sdk-go/v2"
+	"github.com/beelis/server-sdk-go/v2/pkg/samplebuilder"
 	"github.com/livekit/protocol/logger"
-	lksdk "github.com/livekit/server-sdk-go/v2"
-	"github.com/livekit/server-sdk-go/v2/pkg/samplebuilder"
 )
 
 var (
