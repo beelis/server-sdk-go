@@ -41,6 +41,7 @@ type Participant interface {
 	Attributes() map[string]string
 	GetTrackPublication(source livekit.TrackSource) TrackPublication
 	Permissions() *livekit.ParticipantPermission
+	DisconnectReason() livekit.DisconnectReason
 
 	setAudioLevel(level float32)
 	setIsSpeaking(speaking bool)
@@ -127,6 +128,15 @@ func (p *baseParticipant) Permissions() *livekit.ParticipantPermission {
 		return proto.Clone(perm).(*livekit.ParticipantPermission)
 	}
 	return nil
+}
+
+func (p *baseParticipant) DisconnectReason() livekit.DisconnectReason {
+	p.lock.RLock()
+	defer p.lock.RUnlock()
+	if p.info != nil {
+		return p.info.GetDisconnectReason()
+	}
+	return livekit.DisconnectReason_UNKNOWN_REASON
 }
 
 func (p *baseParticipant) IsSpeaking() bool {

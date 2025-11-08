@@ -33,6 +33,11 @@ func ExampleRoomCallback() {
 		fmt.Printf("Disconnected from room: %s\n", reason)
 	}
 
+	// Handle when a remote participant disconnects with reason
+	cb.OnParticipantDisconnectedWithReason = func(participant *lksdk.RemoteParticipant, reason livekit.DisconnectReason) {
+		fmt.Printf("Participant %s disconnected with reason: %s\n", participant.Identity(), reason.String())
+	}
+
 	// Create a new room with the callback
 	room := lksdk.NewRoom(cb)
 	room.JoinWithToken("wss://myproject.livekit.cloud", "my-token")

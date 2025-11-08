@@ -910,7 +910,9 @@ func (r *Room) OnParticipantDisconnect(rp *RemoteParticipant) {
 
 	rp.unpublishAllTracks()
 	r.LocalParticipant.handleParticipantDisconnected(rp.Identity())
+	disconnectReason := rp.DisconnectReason()
 	go r.callback.OnParticipantDisconnected(rp)
+	go r.callback.OnParticipantDisconnectedWithReason(rp, disconnectReason)
 }
 
 func (r *Room) OnSpeakersChanged(speakerUpdates []*livekit.SpeakerInfo) {
